@@ -1,5 +1,6 @@
 require('code_runner').setup({
   -- put here the commands by filetype
+startinsert = true,
   filetype = {
 		java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
 		python = "python3 -u",
