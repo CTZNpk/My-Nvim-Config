@@ -84,7 +84,7 @@ return packer.startup(function(use)
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
   }
-  use "lukas-reineke/indent-blankline.nvim" --Line Indents
+  use { "lukas-reineke/indent-blankline.nvim", tag = "v2.20.8" } --Line Indents
 
   --***********Code Runner***********
   use "CRAG666/code_runner.nvim"
@@ -102,7 +102,15 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"     -- AutoPair the brackets
   use "mg979/vim-visual-multi"    --MultiCursor
   use "lvimuser/lsp-inlayhints.nvim"
-
+  use "stevearc/dressing.nvim"
+  use({
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({
+        disable_legacy_commands = true
+      })
+    end,
+  })
   --*************Buffers******************
   use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
@@ -130,11 +138,12 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim" --Fuzzy Finder
 
   --**************TreeSitter************************
-  use "HiPhish/nvim-ts-rainbow2"                    -- Rainbow Brackets
-  use "nvim-treesitter/nvim-treesitter"             -- Treesitter ]]
-  use "JoosepAlviste/nvim-ts-context-commentstring" --For comments according to file
-  use 'goolord/alpha-nvim'                          --starter
-  use "antoinemadec/FixCursorHold.nvim"             -- This is needed to fix lsp doc highlights
+  use {'nvim-treesitter/nvim-treesitter', commit  = "f2778bd1a28b74adf5b1aa51aa57da85adfa3d16"}
+  use {'nvim-treesitter/nvim-treesitter-textobjects', commit = "35a60f093fa15a303874975f963428a5cd24e4a0"}
+  use "HiPhish/nvim-ts-rainbow2" -- Rainbow Brackets
+  use "JoosepAlviste/nvim-ts-context-commentstring"                                                          --For comments according to file  ]] 
+  use 'goolord/alpha-nvim'              --starter
+  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlights
   use "folke/which-key.nvim"
 
   --****************Impatient************************
@@ -161,7 +170,7 @@ return packer.startup(function(use)
     'akinsho/flutter-tools.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim',   -- optional for vim.ui.select
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
     },
   }
   use "dart-lang/dart-vim-plugin"
