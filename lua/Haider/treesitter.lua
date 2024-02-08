@@ -14,10 +14,6 @@ configs.setup({
 		enable = true,
 	},
 	indent = { enable = true, disable = { "python", "css"} },
-    context_commentstring = {
-        enable = true ,
-        enable_autocmd = false,
-    }
 })
 require("nvim-treesitter.configs").setup {
   rainbow = {
