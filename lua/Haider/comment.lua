@@ -1,12 +1,12 @@
 local status_ok, comment = pcall(require, "Comment")
 if not status_ok then
-    print('Comment not working')
+  print('Comment not working')
   return
 end
 
 local status_ok_1, _ = pcall(require, "lsp-inlayhints")
 if not status_ok_1 then
-    print('lsp-inlayhints not workign')
+  print('lsp-inlayhints not workign')
   return
 end
 

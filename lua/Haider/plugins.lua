@@ -45,38 +45,41 @@ return packer.startup(function(use)
 
   -- ******ColorSchemes*************
   use "lunarvim/colorschemes" --Bunch of ColorSchemes
-  use { "catppuccin/nvim", as = "catppuccin",
-    config = require("catppuccin").setup {
-      flavour = "mocha",
-      color_overrides = {
-        mocha = {
-          base = "#000000",
-        },
-      },
-      integrations = {
-        nvimtree = true,
-      },
-      highlight_overrides = {
-        mocha = function(mocha)
-          return {
-            NvimTreeNormal = { bg = mocha.none },
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+      require("catppuccin").setup {
+        name = "catppuccin",
+        priority = 1000,
+        opts = {
+          transparent_background = true,
+          integrations = {
+            telescope = true,
+            harpoon = true,
+            mason = true,
+            neotest = true,
           }
-        end,
-      },
-    } }
-
+        },
+        config = function(_, opts)
+          require('catppuccin').setup(opts)
+          vim.cmd.colorscheme 'catppuccin-mocha'
+        end
+      }
+    end
+  }
   use {
     "folke/tokyonight.nvim",
-    config =
-        require("tokyonight").setup({
-          transparent = true,
-          styles = {
-            sidebars = "transparent",
-            floats = "transparent",
-          }
+    config = function()
+      require("tokyonight").setup({
+        transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
         }
-        ) } -- Tokyo Night Colorscheme
-
+      })
+    end
+  } -- Tokyo Night Colorscheme
   --************Nvim-Tree******************
   use {
     'nvim-tree/nvim-tree.lua',
@@ -111,10 +114,20 @@ return packer.startup(function(use)
       })
     end,
   })
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
   --*************Buffers******************
   use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
-
+  use "vim-airline/vim-airline"
+  use "vim-airline/vim-airline-themes"
 
   --****************Lualine*************************
   use 'nvim-lualine/lualine.nvim'
@@ -136,14 +149,16 @@ return packer.startup(function(use)
 
   --*************Telescope***************************
   use "nvim-telescope/telescope.nvim" --Fuzzy Finder
+  use "preservim/tagbar"
+  use "ThePrimeagen/harpoon"
 
   --**************TreeSitter************************
-  use {'nvim-treesitter/nvim-treesitter', commit  = "f2778bd1a28b74adf5b1aa51aa57da85adfa3d16"}
-  use {'nvim-treesitter/nvim-treesitter-textobjects', commit = "35a60f093fa15a303874975f963428a5cd24e4a0"}
-  use "HiPhish/nvim-ts-rainbow2" -- Rainbow Brackets
-  use "JoosepAlviste/nvim-ts-context-commentstring"                                                          --For comments according to file  ]] 
-  use 'goolord/alpha-nvim'              --starter
-  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlights
+  use { 'nvim-treesitter/nvim-treesitter', commit = "f2778bd1a28b74adf5b1aa51aa57da85adfa3d16" }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects', commit = "35a60f093fa15a303874975f963428a5cd24e4a0" }
+  use "HiPhish/nvim-ts-rainbow2"                    -- Rainbow Brackets
+  use "JoosepAlviste/nvim-ts-context-commentstring" --For comments according to file  ]]
+  use 'goolord/alpha-nvim'                          --starter
+  use "antoinemadec/FixCursorHold.nvim"             -- This is needed to fix lsp doc highlights
   use "folke/which-key.nvim"
 
   --****************Impatient************************
