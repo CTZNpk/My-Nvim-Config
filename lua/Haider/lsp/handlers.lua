@@ -9,6 +9,11 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
+-- Add the configuration to disable the warning
+vim.g.LanguageClient_diagnosticsDisplay = {
+	["^LanguageClient.reportPossiblyUnboundVariable$"] = false,
+}
+
 M.setup = function()
 	local signs = {
 
@@ -69,20 +74,22 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 	keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-    vim.cmd [[command! Format execute 'lua vim.lsp.buf.format() ']]
+	vim.cmd([[command! Format execute 'lua vim.lsp.buf.format() ']])
 end
 
 M.on_attach = function(client, bufnr)
-  
-
-  --[[ if client.name == "tsserver" then
+	--[[ if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
-  
+
 
 	if client.name == "lua_ls" then
 		client.server_capabilities.documentFormattingProvider = false
 	end ]]
+  -- if client.name == "pylsp" then 
+  --   client.plugins.flake8.ignore = {"E402", "F841", "F401", "E302", "E305"];
+  -- end
+
 
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")

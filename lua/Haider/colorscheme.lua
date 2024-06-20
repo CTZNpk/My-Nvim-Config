@@ -1,4 +1,4 @@
-local colorscheme = "tokyonight"
+local colorscheme = "kanagawa"
 
 local status_ok, err = vim.cmd("autocmd VimEnter * colorscheme " .. colorscheme)
 if not status_ok then
