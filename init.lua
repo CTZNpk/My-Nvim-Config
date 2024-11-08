@@ -144,6 +144,9 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+
+-- vim.api.nvim_set_keymap('n', '<space>x', '<cmd>JupyniumExecuteSelectedCells<CR>', { noremap = true, silent = true })
+
 vim.opt.rtp:prepend(lazypath) -- Install your plugins here
 
 require("lazy").setup("plugins")

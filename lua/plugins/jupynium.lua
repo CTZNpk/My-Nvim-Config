@@ -88,18 +88,18 @@ return {
 				"<cmd>JupyniumToggleSelectedCellsOutputsScroll<cr>",
 				{ buffer = buf_id, desc = "Jupynium toggle selected cell output scroll" }
 			)
-			vim.keymap.set(
-				"",
-				"<space>[",
-				"<cmd>JupyniumScrollUp<cr>",
-				{ buffer = buf_id, desc = "Jupynium scroll up" }
-			)
-			vim.keymap.set(
-				"",
-				"<space>]",
-				"<cmd>JupyniumScrollDown<cr>",
-				{ buffer = buf_id, desc = "Jupynium scroll down" }
-			)
+			-- vim.keymap.set(
+			-- 	"",
+			-- 	"<space>k",
+			-- 	"<cmd>JupyniumScrollUp<cr>",
+			-- 	{ buffer = buf_id, desc = "Jupynium scroll up" }
+			-- )
+			-- vim.keymap.set(
+			-- 	"",
+			-- 	"<space>]",
+			-- 	"<cmd>JupyniumScrollDown<cr>",
+			-- 	{ buffer = buf_id, desc = "Jupynium scroll down" }
+			-- )
 		end
 
 		function M.default_keybindings(augroup)
